@@ -4,16 +4,17 @@ import com.devamateur.administrator.identity_service.dto.request.UserCreationReq
 import com.devamateur.administrator.identity_service.dto.request.UserUpdateRequest;
 import com.devamateur.administrator.identity_service.dto.response.UserResponse;
 import com.devamateur.administrator.identity_service.entity.User;
+import com.devamateur.administrator.identity_service.enums.Role;
 import com.devamateur.administrator.identity_service.exception.AppException;
 import com.devamateur.administrator.identity_service.exception.ErrorCode;
 import com.devamateur.administrator.identity_service.mapper.UserMapper;
 import com.devamateur.administrator.identity_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -22,6 +23,8 @@ import java.util.List;
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
+
+    PasswordEncoder passwordEncoder;
 
     public List<UserResponse> getAllUsers() {
         return userRepository.findAll().stream()
@@ -41,8 +44,13 @@ public class UserService {
         }
 
         User user = userMapper.toUser(request);
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        HashSet<String> roles = new HashSet<>();
+        roles.add(Role.USER.name());
+        
+        user.setRoles(roles);
+
         return userMapper.toUserResponse(userRepository.save(user));
     }
 
