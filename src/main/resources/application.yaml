@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: identity-service
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;encrypt=false;trustServerCertificate=true;databaseName=identity_service
+    username: sa
+    password: 123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.SQLServerDialect
+
+server:
+  port: 8080
+
+jwt:
+  signerKey: "5e4793a0665367600e11c5e06257ca3121febe2b5499c89826b265e0fffdbe5b"
