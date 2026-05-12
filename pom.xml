@@ -13,7 +13,6 @@
     </parent>
 
     <groupId>com.devamateur.administrator</groupId>
-    //âqaaa
     <artifactId>identity-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>identity-service</name>
@@ -91,13 +90,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-
-        <!-- JWT Library -->
-        <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.31</version>
         </dependency>
 
         <!-- Test: Web MVC -->

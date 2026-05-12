@@ -18,7 +18,6 @@ import java.util.HashSet;
 @RequiredArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
 public class ApplicationInitConfig {
-
     PasswordEncoder passwordEncoder;
 
     @Bean
