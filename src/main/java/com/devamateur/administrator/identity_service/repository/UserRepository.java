@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+@Repository // Đánh dấu đây là một Bean phụ trách giao tiếp với CSDL
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByUsername(String username);
 

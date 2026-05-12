@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.devamateur.administrator</groupId>
-    //âqaaa
+
     <artifactId>identity-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>identity-service</name>

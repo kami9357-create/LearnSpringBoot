@@ -16,8 +16,9 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/identity/users")
-@RequiredArgsConstructor
+// Đánh dấu class này là một REST controller, Spring sẽ tự động chuyển đổi các đối tượng trả về thành JSON
+@RequestMapping("/identity/users") //Mọi API endpoint trong controller này sẽ bắt đầu bằng "/identity/users"
+@RequiredArgsConstructor  // Tự động sinh constructor với tất cả các field được đánh dấu là final (hoặc @NonNull)
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
     UserService userService;

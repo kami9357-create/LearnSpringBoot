@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
-@Service
+@Service // Đánh dấu đây là Bean phụ trách logic nghiệp vụ
 @RequiredArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
@@ -48,7 +48,7 @@ public class UserService {
 
         HashSet<String> roles = new HashSet<>();
         roles.add(Role.USER.name());
-        
+
         user.setRoles(roles);
 
         return userMapper.toUserResponse(userRepository.save(user));
