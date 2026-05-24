@@ -93,13 +93,6 @@
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
 
-        <!-- JWT Library -->
-        <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.31</version>
-        </dependency>
-
         <!-- Test: Web MVC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

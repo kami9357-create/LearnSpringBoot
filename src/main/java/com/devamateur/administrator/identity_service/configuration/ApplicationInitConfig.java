@@ -1,7 +1,6 @@
 package com.devamateur.administrator.identity_service.configuration;
 
 import com.devamateur.administrator.identity_service.entity.User;
-import com.devamateur.administrator.identity_service.enums.Role;
 import com.devamateur.administrator.identity_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,11 +21,13 @@ public class ApplicationInitConfig {
     PasswordEncoder passwordEncoder;
 
     @Bean
+        // Bean này sẽ chạy khi ứng dụng khởi động, dùng để kiểm tra và tạo user admin nếu chưa tồn tại
     ApplicationRunner applicationRunner(UserRepository userRepository) {
+        // Kiểm tra nếu chưa có user admin thì tạo mới
         return args -> {
-            if (userRepository.findByUsername("admin").isEmpty()) {
+            if (!userRepository.existsByUsername("admin")) {
                 var roles = new HashSet<String>();
-                roles.add(Role.ADMIN.name());
+                roles.add("ADMIN");
 
                 User user = User.builder()
                         .username("admin")
@@ -35,7 +36,7 @@ public class ApplicationInitConfig {
                         .build();
 
                 userRepository.save(user);
-                log.warn("Admin user created with username: admin and password: admin. Please change the password immediately after logging in.");
+                log.warn("Admin user created with username 'admin' and password 'admin'. Please change the password immediately after logging in.");
             }
         };
     }

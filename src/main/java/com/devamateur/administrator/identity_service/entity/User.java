@@ -23,5 +23,5 @@ public class User {
     String firstName;
     String lastName;
     LocalDate dob;
-    Set<String> roles; // Danh sách các role của người User
+    Set<String> roles;
 }

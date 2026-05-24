@@ -7,6 +7,7 @@ import com.devamateur.administrator.identity_service.dto.response.Authentication
 import com.devamateur.administrator.identity_service.dto.response.IntrospectResponse;
 import com.devamateur.administrator.identity_service.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/identity/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
-@FieldDefaults(level = lombok.AccessLevel.PRIVATE, makeFinal = true)
-
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationController {
     AuthenticationService authenticationService;
 
@@ -33,11 +33,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/introspect")
-    ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request)
-            throws ParseException, JOSEException {
+    ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
         var result = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder()
                 .data(result)
                 .build();
     }
+
+
 }
